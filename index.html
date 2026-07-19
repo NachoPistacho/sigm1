@@ -105,6 +105,7 @@
         .btn-container {
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 20px;
             margin-top: 30px;
             position: relative;
@@ -130,11 +131,21 @@
             background: #5c4a35;
         }
 
-        /* El botón escurridizo */
-        #btn-no-troll {
-            position: absolute;
-            transition: all 0.1s ease;
-            z-index: 10;
+        /* Animación de caída física para el botón No */
+        .falling-button {
+            animation: fallAndSpin 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            pointer-events: none; /* Evita que lo vuelvan a clickar mientras cae */
+        }
+
+        @keyframes fallAndSpin {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(400px) rotate(120deg);
+                opacity: 0;
+            }
         }
 
         /* Formulario */
@@ -190,7 +201,7 @@
             </div>
         </div>
 
-        <!-- PANTALLA 2: Pregunta Broma con botón troll -->
+        <!-- PANTALLA 2: Pregunta Broma con botón que se cae -->
         <div id="screen2" class="screen">
             <h1>VERIFICACIÓN DE USUARIO</h1>
             <p>Antes de habilitar la ranura de inserción, el protocolo requiere que declares bajo juramento tu conformidad con los términos de autoría:</p>
@@ -243,23 +254,18 @@
         }
 
         const btnNo = document.getElementById('btn-no-troll');
-        const container = document.getElementById('troll-container');
 
-        btnNo.addEventListener('mouseover', () => {
-            const containerRect = container.getBoundingClientRect();
-            const btnRect = btnNo.getBoundingClientRect();
-
-            const maxLeft = containerRect.width - btnRect.width;
-            const randomLeft = Math.floor(Math.random() * maxLeft);
-            const randomTop = Math.floor(Math.random() * 60) - 30; 
-
-            btnNo.style.left = randomLeft + 'px';
-            btnNo.style.top = randomTop + 'px';
-        });
-
+        // Lógica interactiva para tirar el botón al suelo
         btnNo.addEventListener('click', (e) => {
             e.preventDefault();
-            alert("Acceso denegado. El protocolo exige una declaración afirmativa.");
+            
+            // Añadimos la clase CSS que maneja el efecto visual de gravedad
+            btnNo.classList.add('falling-button');
+            
+            // Eliminamos el botón por completo del HTML tras finalizar la animación
+            setTimeout(() => {
+                btnNo.remove();
+            }, 600);
         });
 
         function handleSubmit() {
