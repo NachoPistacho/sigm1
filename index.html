@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The One Wish Willow</title>
-    <!-- Fuente mística de Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Special+Elite&display=swap" rel="stylesheet">
+    <!-- Fuentes místicas, mecánicas y clásicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Courier+Prime&family=Special+Elite&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -15,10 +15,15 @@
         }
 
         body {
-            background-color: #120c1f;
-            background-image: radial-gradient(circle, #24143e 0%, #0a0612 100%);
-            color: #e5d4b3;
-            font-family: 'Cinzel', serif;
+            /* Estética de cartón antiguo / pergamino desgastado */
+            background-color: #e6dfd1;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(255,255,255,0.3) 0%, rgba(0,0,0,0.05) 100%),
+                linear-gradient(rgba(180,160,130,0.15) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(180,160,130,0.15) 1px, transparent 1px);
+            background-size: auto, 20px 20px, 20px 20px;
+            color: #2b251d;
+            font-family: 'Courier Prime', monospace;
             display: flex;
             justify-content: center;
             align-content: center;
@@ -29,31 +34,58 @@
         }
 
         .container {
-            background: rgba(25, 16, 41, 0.85);
-            border: 2px solid #bfa15f;
-            box-shadow: 0 0 30px rgba(191, 161, 95, 0.2);
-            border-radius: 8px;
-            padding: 40px 30px;
-            max-width: 500px;
+            background: #f4edd9;
+            border: 3px double #4a3e2e;
+            box-shadow: 
+                0 0 0 10px #f4edd9,
+                0 15px 35px rgba(0,0,0,0.25),
+                inset 0 0 40px rgba(74,62,46,0.15);
+            border-radius: 4px;
+            padding: 45px 35px;
+            max-width: 520px;
             width: 100%;
             text-align: center;
             position: relative;
             transition: all 0.5s ease;
         }
 
+        /* Manchas simuladas de pergamino antiguo */
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(139,115,85,0.08) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(139,115,85,0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
         h1 {
-            font-size: 2rem;
-            color: #bfa15f;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(191, 161, 95, 0.5);
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: #3d3123;
+            margin-bottom: 25px;
+            letter-spacing: 3px;
+            font-weight: 700;
+            border-bottom: 2px solid #3d3123;
+            padding-bottom: 10px;
+            z-index: 2;
+            position: relative;
         }
 
         p {
-            font-size: 1.1rem;
+            font-family: 'Courier Prime', monospace;
+            font-size: 1.05rem;
             line-height: 1.6;
-            margin-bottom: 30px;
-            color: #dfd3c3;
+            margin-bottom: 25px;
+            text-align: justify;
+            z-index: 2;
+            position: relative;
+        }
+
+        strong {
+            color: #800000;
+            font-weight: bold;
         }
 
         .screen {
@@ -62,40 +94,40 @@
 
         .active {
             display: block;
-            animation: fadeIn 0.8s ease forwards;
+            animation: fadeIn 0.6s ease forwards;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
-        /* Botones y respuestas */
         .btn-container {
             display: flex;
             justify-content: center;
             gap: 20px;
-            margin-top: 20px;
+            margin-top: 30px;
             position: relative;
             min-height: 60px;
+            z-index: 2;
         }
 
         button, .btn-submit {
-            background: #bfa15f;
-            color: #120c1f;
-            border: none;
-            padding: 12px 30px;
-            font-family: 'Cinzel', serif;
+            background: #3d3123;
+            color: #f4edd9;
+            border: 1px solid #2b251d;
+            padding: 12px 28px;
+            font-family: 'Courier Prime', monospace;
             font-weight: bold;
-            font-size: 1rem;
+            font-size: 0.95rem;
             cursor: pointer;
-            border-radius: 4px;
-            transition: background 0.3s, transform 0.1s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border-radius: 2px;
+            transition: background 0.2s, color 0.2s;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
         }
 
         button:hover, .btn-submit:hover {
-            background: #d4b97a;
+            background: #5c4a35;
         }
 
         /* El botón escurridizo */
@@ -105,34 +137,41 @@
             z-index: 10;
         }
 
-        /* Formulario final */
+        /* Formulario */
         textarea {
             width: 100%;
-            height: 100px;
-            background: #1c132e;
-            border: 1px solid #bfa15f;
-            color: #fff;
+            height: 110px;
+            background: #fbf8f0;
+            border: 1px solid #4a3e2e;
+            color: #1a1510;
             padding: 12px;
-            font-family: sans-serif;
+            font-family: 'Courier Prime', monospace;
             font-size: 1rem;
-            border-radius: 4px;
+            border-radius: 2px;
             resize: none;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            box-shadow: inset 1px 1px 4px rgba(0,0,0,0.1);
+            z-index: 2;
+            position: relative;
         }
 
         textarea:focus {
             outline: none;
-            box-shadow: 0 0 10px rgba(191, 161, 95, 0.5);
+            border-color: #800000;
+            box-shadow: inset 1px 1px 4px rgba(0,0,0,0.1), 0 0 5px rgba(128,0,0,0.2);
         }
 
-        .burocracia {
+        .clausulas {
             font-family: 'Special Elite', monospace;
-            font-size: 0.85rem;
-            color: #a094b2;
-            border-top: 1px dashed #bfa15f;
+            font-size: 0.8rem;
+            color: #4a4238;
+            border-top: 1px dashed #4a3e2e;
             padding-top: 15px;
-            margin-top: 20px;
+            margin-top: 25px;
             text-align: left;
+            line-height: 1.4;
+            z-index: 2;
+            position: relative;
         }
     </style>
 </head>
@@ -140,53 +179,58 @@
 
     <div class="container">
         
-        <!-- PANTALLA 1: Introducción -->
+        <!-- PANTALLA 1: Introducción Estilo Obsession -->
         <div id="screen1" class="screen active">
             <h1>ONE WISH WILLOW</h1>
-            <p>Has abierto la caja del sauce. El destino te ha traído hasta aquí para reclamar lo que te pertenece. Solo tienes una oportunidad.</p>
-            <p>¿Estás preparado para iniciar el ritual de invocación del deseo?</p>
+            <p>Has roto el sello físico del Sauce de un Solo Deseo. Al entrar en esta interfaz, has iniciado de forma vinculante la secuencia de reclamación.</p>
+            <p>Advertencia de la Directiva General: El sistema procesará una **única petición**. No existen segundas oportunidades, extensiones ni canales de enmienda.</p>
+            <p>¿Proceder con la apertura del terminal?</p>
             <div class="btn-container">
-                <button onclick="nextScreen(2)">Sí, lo estoy</button>
+                <button onclick="nextScreen(2)">[ CONTINUAR ]</button>
             </div>
         </div>
 
         <!-- PANTALLA 2: Pregunta Broma con botón troll -->
         <div id="screen2" class="screen">
-            <h1>CONCESIÓN DE LICENCIA</h1>
-            <p>Antes de proceder, el Oráculo necesita confirmar tu identidad y pureza espiritual:</p>
-            <p><strong>¿Aceptas que la persona que te ha regalado esta caja es un ser superior, sumamente inteligente y que tiene siempre la razón?</strong></p>
+            <h1>VERIFICACIÓN DE USUARIO</h1>
+            <p>Antes de habilitar la ranura de inserción, el protocolo requiere que declares bajo juramento tu conformidad con los términos de autoría:</p>
+            <p><strong>¿Aceptas incondicionalmente que el emisor de este artefacto es un ser intelectualmente superior, sumamente brillante y dueño absoluto de la razón en cualquier disputa pasada, presente o futura?</strong></p>
             <div class="btn-container" id="troll-container">
-                <button onclick="nextScreen(3)">Sí, totalmente</button>
+                <button onclick="nextScreen(3)">Sí, lo acepto</button>
                 <button id="btn-no-troll">No</button>
             </div>
         </div>
 
         <!-- PANTALLA 3: El Formulario del Deseo -->
         <div id="screen3" class="screen">
-            <h1>PIDE TU DESEO</h1>
-            <p>Identidad confirmada con éxito. Escribe a continuación tu mayor deseo. El cosmos (y nuestro departamento de logística) se encargarán del resto.</p>
+            <h1>REGISTRO DEL DESEO</h1>
+            <p>Declaración jurada indexada correctamente. Redacta a continuación tu deseo. Una vez enviado, el engranaje del destino se ejecutará de forma irrevocable.</p>
             
-            <!-- FORMULARIO CONFIGURADO CON TU CORREO -->
             <form action="https://formsubmit.co/guillemfs08@gmail.com" method="POST" onsubmit="return handleSubmit()">
                 <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_subject" value="¡Alguien ha pedido un deseo en la One Wish Willow!">
+                <input type="hidden" name="_subject" value="¡Contrato irrevocable: Deseo One Wish Willow!">
                 
-                <textarea name="deseo" placeholder="Escribe aquí tu deseo..." required></textarea>
+                <textarea name="deseo" placeholder="Escribe tu deseo aquí de forma clara..." required></textarea>
                 
-                <button type="submit" class="btn-submit">Enviar al Cosmos</button>
+                <button type="submit" class="btn-submit">Fijar Destino</button>
             </form>
 
-            <div class="burocracia">
-                * Cláusula de exención de responsabilidad mágica: El deseo se procesará en un plazo de 5 a 30 días laborales (fines de semana y festivos en el Olimpo no incluidos). Sujeto a disponibilidad del tejido espacio-temporal.
+            <div class="clausulas">
+                <strong>CLÁUSULAS IRREVOCABLES:</strong><br>
+                1. Queda estrictamente prohibido intentar pedir más de un deseo. Cualquier intento de duplicación anulará el proceso originario.<br>
+                2. Los efectos son perpetuos. El deseo <strong>no se puede revocar</strong>, modificar ni cancelar bajo ninguna circunstancia una vez presionado el botón.<br>
+                3. Plazo estimado de ejecución: 5 a 30 días laborales.<br><br>
+                En caso de anomalías sistémicas o dudas críticas con el cumplimiento de las cláusulas, contactar de inmediato al Departamento de Incidencias: <strong>640 68 17 53</strong>.
             </div>
         </div>
 
         <!-- PANTALLA 4: Fin del proceso -->
         <div id="screen4" class="screen">
-            <h1>RITUAL COMPLETADO</h1>
-            <p>Tu deseo ha sido cifrado y enviado a las altas esferas del destino.</p>
-            <p>Guarda el secreto. El proceso ha comenzado. Puedes cerrar esta pestaña.</p>
-            <p style="color: #bfa15f; font-size: 1.5rem;">✨ 🔮 ✨</p>
+            <h1>PROCESO IRREVOCABLE</h1>
+            <p>Tu petición ha sido transmitida, sellada al vacío y archivada de forma permanente en los registros del destino.</p>
+            <p>Cualquier intento de alteración posterior incurrirá en una paradoja temporal catastrófica. Mantén el silencio y espera el veredicto.</p>
+            <p>Puedes cerrar este terminal.</p>
+            <p style="color: #3d3123; font-size: 1.5rem; margin-top: 20px;">[ SELLO DE CIERRE ]</p>
         </div>
 
     </div>
@@ -206,7 +250,7 @@
 
             const maxLeft = containerRect.width - btnRect.width;
             const randomLeft = Math.floor(Math.random() * maxLeft);
-            const randomTop = Math.floor(Math.random() * 80) - 40; 
+            const randomTop = Math.floor(Math.random() * 60) - 30; 
 
             btnNo.style.left = randomLeft + 'px';
             btnNo.style.top = randomTop + 'px';
@@ -214,7 +258,7 @@
 
         btnNo.addEventListener('click', (e) => {
             e.preventDefault();
-            alert("Buen intento, pero el Oráculo no acepta un NO por respuesta.");
+            alert("Acceso denegado. El protocolo exige una declaración afirmativa.");
         });
 
         function handleSubmit() {
@@ -230,7 +274,7 @@
                 if (response.ok) {
                     nextScreen(4);
                 } else {
-                    alert("Hubo un error con la conexión cósmica. Inténtalo de nuevo.");
+                    alert("Error en la transmisión. Inténtalo de nuevo.");
                 }
             }).catch(error => {
                 nextScreen(4); 
